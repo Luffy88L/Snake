@@ -1,22 +1,41 @@
+import streamlit as st
 import random
-import time
-from colorama import Fore, Style, init
 
-init(autoreset=True)
+# ตั้งค่าหน้าเว็บ
+st.set_page_config(page_title="Cool Math Generator", page_icon="🔥", layout="centered")
 
-def banner():
-    print(Fore.CYAN + r"""
-   ╔══════════════════════════════════════╗
-      ███╗   ██╗██╗   ██╗███████╗██████╗ 
-      ████╗  ██║╚██╗ ██╔╝██╔════╝██╔══██╗
-      ██╔██╗ ██║ ╚████╔╝ █████╗  ██████╔╝
-      ██║╚██╗██║  ╚██╔╝  ██╔══╝  ██╔══██╗
-      ██║ ╚████║   ██║   ███████╗██║  ██║
-      ╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚═╝  ╚═╝
-   ╚══════════════════════════════════════╝
-    """)
+# CSS เท่ ๆ
+st.markdown("""
+<style>
+    body {
+        background: #0d0d0d;
+        color: #fff;
+        font-family: 'Roboto', sans-serif;
+    }
+    .title {
+        font-size: 45px;
+        text-align: center;
+        color: #00eaff;
+        text-shadow: 0 0 15px #00eaff;
+        font-weight: bold;
+    }
+    .box {
+        padding: 25px;
+        border-radius: 15px;
+        background: rgba(255,255,255,0.08);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+</style>
+""", unsafe_allow_html=True)
 
-def generate_problem():
+# Title
+st.markdown("<div class='title'>🔥 COOL MATH GENERATOR 🔥</div>", unsafe_allow_html=True)
+st.write("")
+
+# ปุ่มสร้างโจทย์
+if st.button("⚡ สร้างโจทย์ใหม่", use_container_width=True):
+
     a = random.randint(1, 99)
     b = random.randint(1, 99)
     op = random.choice(['+', '-', '*', '/'])
@@ -30,15 +49,10 @@ def generate_problem():
     else:
         ans = round(a / b, 2)
 
-    return a, op, b, ans
+    st.markdown("<div class='box'>", unsafe_allow_html=True)
+    st.subheader(f"✳️ โจทย์:  **{a}  {op}  {b}**")
+    st.success(f"💡 คำตอบ:  **{ans}**")
+    st.markdown("</div>", unsafe_allow_html=True)
 
-banner()
-
-print(Fore.MAGENTA + "⚡ GENERATING COOL MATH PROBLEM...\n")
-time.sleep(1)
-
-a, op, b, ans = generate_problem()
-
-print(Fore.GREEN + f"🔥 โจทย์เท่ ๆ: {a} {op} {b}")
-time.sleep(0.5)
-print(Fore.YELLOW + f"💡 คำตอบ: {ans}")
+else:
+    st.info("กดปุ่มด้านบนเพื่อสร้างโจทย์เท่ ๆ 🤘😎")
