@@ -36,8 +36,8 @@ st.write("")
 # ปุ่มสร้างโจทย์
 if st.button("⚡ สร้างโจทย์ใหม่", use_container_width=True):
 
-    a = random.randint(1, 999)
-    b = random.randint(1, 999)
+    a = random.randint(1, 9)
+    b = random.randint(1, 9)
     op = random.choice(['+', '-', '*', '/'])
 
     if op == '+':
